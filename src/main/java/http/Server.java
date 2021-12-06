@@ -6,12 +6,12 @@ import java.net.Socket;
 
 public class Server {
 
-    public static final int TCP_PORT = 8113;
+    public static final int TCP_PORT = 8080;
 
     public static void main(String[] args) {
 
-        Citat.citati.add(new Citat("Perisic Branko", "Bolje dzaba sedeti nego dzaba raditi"));
-        Citat.citati.add(new Citat("Perisic Branko", "Plac majke Bozije"));
+        Quote.quotes.add(new Quote("Nelson Mandela", "The greatest glory in living lies not in never falling, but in rising every time we fall."));
+        Quote.quotes.add(new Quote("John Lenon", "Life is what happens when you're busy making other plans."));
         try {
             ServerSocket ss = new ServerSocket(TCP_PORT);
             while (true) {

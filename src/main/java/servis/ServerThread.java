@@ -1,15 +1,10 @@
 package servis;
 
-import app.RequestHandler;
 import com.google.gson.Gson;
-import http.Citat;
-import http.HttpMethod;
-import http.Request;
-import http.response.Response;
+import http.Quote;
 
 import java.io.*;
 import java.net.Socket;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.StringTokenizer;
@@ -20,16 +15,16 @@ public class ServerThread implements Runnable {
     private BufferedReader in;
     private PrintWriter out;
     private Gson gson;
-    private ArrayList<Citat> lista;
+    private ArrayList<Quote> lista;
 
     public ServerThread(Socket sock) {
         this.client = sock;
         gson = new Gson();
         lista = new ArrayList<>();
-        lista.add(new Citat("pera1", "citat1"));
-        lista.add(new Citat("pera2", "citat2"));
-        lista.add(new Citat("pera3", "citat3"));
-        lista.add(new Citat("pera4", "citat4"));
+        lista.add(new Quote("author1", "quote1"));
+        lista.add(new Quote("author2", "quote2"));
+        lista.add(new Quote("author3", "quote3"));
+        lista.add(new Quote("author4", "quote4"));
         try {
             //inicijalizacija ulaznog toka
             in = new BufferedReader(
@@ -70,7 +65,7 @@ public class ServerThread implements Runnable {
 
             Random rn = new Random();
             int answer = rn.nextInt(4);
-            Citat qotd = lista.get(answer);
+            Quote qotd = lista.get(answer);
             //System.out.println(gson.toJson(qotd));
             System.out.println("\nOdgovor servera: \n");
 

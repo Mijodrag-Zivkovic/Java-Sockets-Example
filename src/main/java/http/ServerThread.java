@@ -11,9 +11,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.util.StringTokenizer;
 
 public class ServerThread implements Runnable {
@@ -28,7 +25,7 @@ public class ServerThread implements Runnable {
         this.client = sock;
         gson = new Gson();
         try {
-            servis = new Socket("localhost", 8114);
+            servis = new Socket("localhost", 8081);
             in = new BufferedReader(new InputStreamReader(client.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(client.getOutputStream())), true);
             servisIn = new BufferedReader(new InputStreamReader(servis.getInputStream()));
@@ -74,7 +71,7 @@ public class ServerThread implements Runnable {
 
                 System.out.println(s);
 
-                Citat.citati.add(new Citat(s.substring(s.indexOf("=") + 1, s.indexOf("&")), s.substring(s.lastIndexOf("=") + 1)));
+                Quote.quotes.add(new Quote(s.substring(s.indexOf("=") + 1, s.indexOf("&")), s.substring(s.lastIndexOf("=") + 1)));
             }
             //String zdravo = "zdravo";
             //servisOut.println(zdravo);
@@ -98,9 +95,9 @@ public class ServerThread implements Runnable {
             } while (!requestLine.trim().equals(""));
             System.out.println("");
             requestLine = servisIn.readLine();
-            Citat c = gson.fromJson(requestLine, Citat.class);
-            c.setCitatDana(c);
-            System.out.println(Citat.citatDana.getAutor() + " " + Citat.citatDana.getCitat());
+            Quote c = gson.fromJson(requestLine, Quote.class);
+            c.setQuoteOfTheDay(c);
+            System.out.println(Quote.quoteOfTheDay.getAuthor() + " " + Quote.quoteOfTheDay.getQuote());
             System.out.println(requestLine);
             System.out.println("kraj");
 

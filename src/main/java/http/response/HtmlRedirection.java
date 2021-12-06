@@ -10,7 +10,7 @@ public class HtmlRedirection extends Response {
 
     @Override
     public String getResponseString() {
-        String response = "HTTP/1.1 301 Redirect\r\nLocation: /newsletter\r\n\r\n";
+        String response = "HTTP/1.1 301 Redirect\r\nLocation: /quotes\r\n\r\n";
         //response += html;
 
         return response;
